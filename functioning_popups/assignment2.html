@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Share Calculator</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1>Learn Your Share Profit/Loss</h1>
+        
+        <p>Please fill out the following information so that we may tell you if you profited from your investment or if you lost profit</p>
+        
+        <div id="input">
+            <p>How many shares did you purcahse?</p>
+            <input id="purchased" type="text" placeholder="Amount"/>
+            
+            <p>How much was each share?</p>
+            <input id="buyingFor" type="text" placeholder="Amount"/>
+            
+            <p>What percent(decimal form: 0.08 for 8%) will the stockbroker be getting from the shares purchased?</p>
+            <input id="buyingPercent" type="text" placeholder="Amount"/>
+            
+            <p>How much are you selling your shares for?</p>
+            <input id="sellingFor" type="text" placeholder="Amount"/>
+            
+            <p>What percent (decimal form: 0.08 for 8%) will the stockbroker get for selling the shares?</p>
+            <input id="sellingPercent" type="text" placeholder="Amount"/>
+            
+            <br>
+            <br>
+            
+            <button id="submit">Submit</button>
+            
+        </div>
+        
+        <br>
+        <br>
+        
+        <div id="message">
+        </div>
+        
+        <script type="text/javascript">
+            
+            var submit = document.getElementById("submit");
+            
+            submit.onclick = function() {
+                var purchased = document.getElementById("purchased").value * document.getElementById("buyingFor").value;
+                
+                var buyPercent = purchased * document.getElementById("buyingPercent").value;
+                
+                var sellPrice = document.getElementById("purchased").value * document.getElementById("sellingFor").value;
+                
+                var sellPercent = sellPrice * document.getElementById("sellingPercent").value;
+                
+                var total = sellPrice - (purchased + buyPercent + sellPercent)
+                
+                message.innerHTML = "Your purchase total was $" + purchased.toFixed(2) + ".<br>";
+        
+                message.innerHTML += "From this purchase the stockbroker will be getting $" + buyPercent + ".<br>";
+                
+                message.innerHTML += "The total you will recieve from selling your shares back at your price is $" + sellPrice + ".<br>";
+                
+                message.innerHTML += "From this sale the stockbroker will be getting $" + sellPercent.toFixed(2) + ".<br>";
+                
+                if (total < 0) {
+                    message.innerHTML += "Your loss is" + total + ".";
+                } else {
+                    message.innerHTML += "Your profit is $" + total + ".";
+                }
+                
+            }
+            
+        </script>
+        
+    </body>
+</html>
